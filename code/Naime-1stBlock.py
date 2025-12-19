@@ -92,7 +92,7 @@ def export_network(network, co2_limit=1.0):
 # Step 6: Export Network Tables to CSV
 # -------------------------------
 def export_network_to_csv(network, co2_limit=1.0):
-    folder = f"all_hydro_to_phs_expand_transmission/csv/co2_{int(co2_limit * 100)}"
+    folder = f"./results/all_hydro_to_phs_expand_transmission/csv/co2_{int(co2_limit * 100)}"
     os.makedirs(folder, exist_ok=True)
     network.export_to_csv_folder(folder)
 
