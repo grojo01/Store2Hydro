@@ -1,0 +1,41 @@
+# Store2Hydro WP4 TPA Jonas and Anouk setup
+
+#ignore following folders
+!code/.gitkeep
+data/*
+!data/.gitkeep
+results/*
+!results/.gitkeep
+.snakemake/
+
+# PyPSA network files (very large)
+*.nc
+
+# --- Pixi / Virtual Environments ---
+.pixi/
+venv/
+.venv/
+
+# --- Solvers (Gurobi, etc.) ---
+gurobi.log
+gurobi.lic
+*.lp
+*.log
+
+# --- Python Artifacts ---
+__pycache__/
+*.pyc
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+# --- Editor & OS ---
+.vscode/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# --- Testing ---
+.pytest_cache/
