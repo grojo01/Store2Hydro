@@ -1,0 +1,81 @@
+# Config file for Store2Hydro Project
+# Goal: Test a minimal hydro + PHS system in France (There is a lot of hydro data available for FR)
+
+
+tutorial: false
+
+run:
+  name: "hydro-phs-minimalconfig-fr"
+
+
+scenario:
+  clusters:
+  # - 6 # this works for sure
+  - 12
+
+countries: 
+- FR
+
+snapshots: # time period must be concurrent wth atlite cutout
+  start: "2013-01-01"
+  end: "2013-01-31"
+
+#electricity:
+#  extendable_carriers: [] # just create the model for this system, so no extantable capacities 
+    # Generator: [hydro, OCGT]
+    # StorageUnit: [PHS] # would extend every bus with a PHS storageunit
+    # Store: [H2]
+    # Link: [PHS]
+#  renewable_carriers: [hydro]
+#  estimate_renewable_capacities:
+#    enable: false
+
+atlite:
+### default:
+  default_cutout: europe-2013-sarah3-era5
+
+### alternative:
+#create own cutout for france with era5 data: this needs the installatoin of CDSAPI key [https://pypsa-eur.readthedocs.io/en/latest/preparation.html#module-build_cutout]
+  # default_cutout: [] # wichtig, dass leer, sonst wird es nicth neu erstellt vorher: fr-2023-era5
+  # cutouts:
+  #   fr-2023-era5:
+  #     module: era5
+  #     x: [-5.5, 9.8]
+  #     y: [41.0, 51.2]
+  #     time: ["2023-01-01", "2023-12-31"]
+  #     prepare_kwargs:
+  #       features:
+  #         - runoff
+  #         - height
+
+renewable:
+  hydro:
+    cutout: default
+    carriers:
+    - ror
+    - hydro
+    - PHS
+
+clustering:
+  exclude_carriers: []
+  temporal:
+    resolution_elec: 24h
+
+lines:
+  dynamic_line_rating:
+    activate: false
+
+# energy: []
+
+solving:
+  solver:
+    name: gurobi
+
+  check_objective:
+    enable: false
+
+
+# Test run with: 
+# cd pypsa-eur
+# snakemake -call all --configfile ../config/s2h-minimal-V3.yaml --latency-wait 300 --cores all
+# snakemake -call solve_elec_networks --configfile ../config/s2h-minimal-V3.yaml --latency-wait 300 --cores all
