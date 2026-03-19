@@ -19,6 +19,17 @@ snapshots:
 
 foresight: myopic
 
+sector:   # myopic only works for sector networks,
+          # workaround: set all sectors to false
+  transport: false
+  heating: false
+  biomass: false
+  industry: false
+  shipping: false
+  aviation: false
+  agriculture: false
+  fossil_fuels: false
+
 clustering:
   temporal:
     resolution_elec: 3h 
