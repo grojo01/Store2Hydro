@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name="S2H_solve"          # change job-name
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=45G
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=USER_EMAIL_HERE     # change USER_EMAIL_HERE
+#SBATCH --time=0-04:00:00
+#SBATCH --error=%x_%j.err
+#SBATCH --output=%x_%j.out
+
+
+PROJECT_DIR=$(pwd)
+cd $PROJECT_DIR/pypsa-eur
+
+source ~/.bashrc
+
+# Snakemake Call
+pixi run snakemake solve_elec_networks \
+    --configfile ../config/retrofitting_test_1.yaml \   # change to your config
+    --cores $SLURM_CPUS_PER_TASK \
+    --latency-wait 60
