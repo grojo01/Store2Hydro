@@ -32,7 +32,8 @@ sector:   # myopic only works for sector networks,
 
 clustering:
   temporal:
-    resolution_elec: 3h 
+    resolution_elec: false
+    resulotion_sector: 3h
 # problem with 24h cannot capture arbitrage potential
 
 countries:
