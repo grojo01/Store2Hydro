@@ -1,0 +1,52 @@
+# Config file for Store2Hydro Project
+# Goal: Realistic test of the hydro-to-PHS retrofit feature
+# Higher investment cost, more clusters, myopic foresight
+run:
+  name: "FR_10_3h_myopic_25_30_35"
+
+scenario:
+  clusters:
+  - 10  # mehr Cluster → näher an einzelne Kraftwerke
+  planning_horizons:
+  - 2025
+  - 2030
+  - 2035
+
+snapshots:
+  start: "2013-01-01"
+  end: "2014-01-01"
+  inclusive: left
+
+foresight: myopic
+
+clustering:
+  temporal:
+    resolution_elec: 3h 
+# problem with 24h cannot capture arbitrage potential
+
+countries:
+- FR
+
+renewable:
+  hydro: # defaults
+    cutout: default
+    carriers:
+    - ror
+    - PHS
+    - hydro
+    PHS_max_hours: 6
+    hydro_max_hours: energy_capacity_totals_by_country
+    flatten_dispatch: false
+    flatten_dispatch_buffer: 0.2
+    clip_min_inflow: 1.0
+    eia_norm_year: false
+    eia_correct_by_capacity: false
+    eia_approximate_missing: false
+### Retrofitting parameters:    
+    retrofit_to_phs:
+      enable: true
+      capital_cost: 120000  # realistisch: ~120 EUR/kW = 120.000 EUR/MW Einmalkosten
+                             # als annualisierter Wert abhängig von discount rate & lifetime  
+
+# Test run:
+# snakemake -call solve_elec_networks --configfile ../config/retrofitting_test_1.yaml --latency-wait 300 --cores all
