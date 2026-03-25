@@ -44,3 +44,4 @@ Thumbs.db
 *.sh
 *.out
 *.err
+!submission_scripts/submit_pypsa.sh.template
