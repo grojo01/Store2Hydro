@@ -57,6 +57,7 @@ renewable:
       enable: true
       capital_cost: 500000   # EUR/MW/a — annualized cost for pump installation
       # max_hours: 6         #hier keine Zahl, sondern eine Methode
+      # max_share: 1.0       # optional, Anteil der Hydro-Kapazität die maximal umgerüstet werden darf (0.0-1.0)
 
 clustering:
   exclude_carriers: []

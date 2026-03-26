@@ -29,6 +29,7 @@ renewable:
     retrofit_to_phs:
       enable: true
       capital_cost: 1000000   # sehr niedrig → Retrofit sollte IMMER gewählt werden
+      max_share: 0.5          # max 50% der Hydro-Kapazität darf umgerüstet werden
 
 clustering:
   exclude_carriers: []
