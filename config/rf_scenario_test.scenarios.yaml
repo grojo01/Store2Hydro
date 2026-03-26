@@ -1,0 +1,26 @@
+# Scenario overrides for the retrofitting test.
+# The top-level keys are the scenario names that will also appear in results/.
+
+retrofit-low-cost:
+  run:
+    prefix: retrofitting_test_1
+  renewable:
+    hydro:
+      retrofit_to_phs:
+        capital_cost: 100000
+
+retrofit-mid-cost:
+  run:
+    prefix: retrofitting_test_1
+  renewable:
+    hydro:
+      retrofit_to_phs:
+        capital_cost: 200000
+
+retrofit-high-cost:
+  run:
+    prefix: retrofitting_test_1
+  renewable:
+    hydro:
+      retrofit_to_phs:
+        capital_cost: 400000

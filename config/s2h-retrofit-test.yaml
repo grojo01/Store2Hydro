@@ -5,13 +5,13 @@
 tutorial: false
 
 run:
-  name: "retrofit-test_high CAPEX"
+  name: "max_share-test"
 
 scenario:
   clusters:
-  - 3
+  - 9
 
-countries: 
+countries:
 - FR
 
 snapshots:
@@ -29,6 +29,7 @@ renewable:
     retrofit_to_phs:
       enable: true
       capital_cost: 1000000   # sehr niedrig → Retrofit sollte IMMER gewählt werden
+      max_share: 0.5
 
 clustering:
   exclude_carriers: []

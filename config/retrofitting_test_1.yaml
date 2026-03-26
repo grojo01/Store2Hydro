@@ -2,7 +2,7 @@
 # Goal: Realistic test of the hydro-to-PHS retrofit feature
 # Higher investment cost, more clusters, myopic foresight
 run:
-  name: "FR_10_3h_myopic_25_30_35"
+  name: "c19068_FR_10_3h"
 
 scenario:
   clusters:
@@ -17,23 +17,28 @@ snapshots:
   end: "2014-01-01"
   inclusive: left
 
-foresight: myopic
+# foresight: myopic
 
-sector:   # myopic only works for sector networks,
-          # workaround: set all sectors to false
-  transport: false
-  heating: false
-  biomass: false
-  industry: false
-  shipping: false
-  aviation: false
-  agriculture: false
-  fossil_fuels: false
+# sector:   # myopic only works for sector networks,
+#           # workaround: set all sectors to false
+#   transport: false
+#   heating: false
+#   biomass: false
+#   industry: false
+#   shipping: false
+#   aviation: false
+#   agriculture: false
+#   fossil_fuels: false
+#   hydrogen_underground_storage: false
+#   ammonia: false
+#   H2_network: false
+#   gas_network: false
+  
 
 clustering:
   temporal:
-    resolution_elec: false
-    resulotion_sector: 3h
+    resolution_elec: 3h
+    resolution_sector: false
 # problem with 24h cannot capture arbitrage potential
 
 countries:
@@ -57,8 +62,7 @@ renewable:
 ### Retrofitting parameters:    
     retrofit_to_phs:
       enable: true
-      capital_cost: 120000  # realistisch: ~120 EUR/kW = 120.000 EUR/MW Einmalkosten
-                             # als annualisierter Wert abhängig von discount rate & lifetime  
+      capital_cost: 19068  
 
 # Test run:
 # snakemake -call solve_elec_networks --configfile ../config/retrofitting_test_1.yaml --latency-wait 300 --cores all
