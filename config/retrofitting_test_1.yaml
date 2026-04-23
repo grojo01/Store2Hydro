@@ -2,7 +2,7 @@
 # Goal: Realistic test of the hydro-to-PHS retrofit feature
 # Higher investment cost, more clusters, myopic foresight
 run:
-  name: "c19068_FR_10_3h"
+  name: "c100_FR_10_myopic_ms0.5"
 
 scenario:
   clusters:
@@ -17,22 +17,22 @@ snapshots:
   end: "2014-01-01"
   inclusive: left
 
-# foresight: myopic
+foresight: myopic
 
-# sector:   # myopic only works for sector networks,
-#           # workaround: set all sectors to false
-#   transport: false
-#   heating: false
-#   biomass: false
-#   industry: false
-#   shipping: false
-#   aviation: false
-#   agriculture: false
-#   fossil_fuels: false
-#   hydrogen_underground_storage: false
-#   ammonia: false
-#   H2_network: false
-#   gas_network: false
+sector:   # myopic only works for sector networks,
+          # workaround: set all sectors to false
+  transport: false
+  heating: false
+  biomass: false
+  industry: false
+  shipping: false
+  aviation: false
+  agriculture: false
+  fossil_fuels: false
+  hydrogen_underground_storage: false
+  ammonia: false
+  H2_network: false
+  gas_network: false
   
 
 clustering:
@@ -62,7 +62,8 @@ renewable:
 ### Retrofitting parameters:    
     retrofit_to_phs:
       enable: true
-      capital_cost: 19068  
+      capital_cost: 100  
+      max_share: 0.5
 
 # Test run:
 # snakemake -call solve_elec_networks --configfile ../config/retrofitting_test_1.yaml --latency-wait 300 --cores all
