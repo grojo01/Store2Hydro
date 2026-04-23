@@ -1,0 +1,50 @@
+# Quickstart Guide: `store2hydro_analysis`
+
+Dieses Paket dient zur Auswertung und Visualisierung von PyPSA-Eur Ergebnissen für das Store2Hydro-Projekt.
+
+## 1. Voraussetzungen
+Stelle sicher, dass die benötigten Python-Bibliotheken installiert sind:
+```bash
+pip install pypsa matplotlib cartopy seaborn pyyaml
+```
+*(Hinweis: `cartopy` ist optional für Karten; ohne Cartopy werden einfache Scatter-Plots erzeugt.)*
+
+## 2. Grundsätzliche Verwendung ([main.py](file:///c:/Users/gjona/projects/Store2Hydro-WP4-IEM/store2hydro_analysis/main.py))
+
+Die Datei [main.py](file:///c:/Users/gjona/projects/Store2Hydro-WP4-IEM/store2hydro_analysis/main.py) ist der zentrale Einstiegspunkt.
+
+### A. Automatische Szenario-Erkennung (Empfohlen)
+Um alle Szenarien in deinem Results-Ordner automatisch zu finden und auszuwerten:
+```bash
+python store2hydro_analysis/main.py \
+    --pypsa-results /pfad/zu/pypsa-eur/results \
+    --auto-discover \
+    --outdir /dein/ausgabe/pfad
+```
+
+### B. Spezifische Szenarien & Baseline-Vergleich
+Um gezielte Szenarien zu vergleichen und eine Baseline (z.B. ohne Retrofit) für die Ersparnis-Berechnung festzulegen:
+```bash
+python store2hydro_analysis/main.py \
+    --pypsa-results /pfad/zu/pypsa-eur/results \
+    --scenarios Szenario_Mit_Retro Szenario_Baseline \
+    --baseline Szenario_Baseline \
+    --outdir /dein/ausgabe/pfad
+```
+
+## 3. Analyse-Module
+Du kannst über `--modules` steuern, welche Analysen durchgeführt werden:
+
+| Modul | Beschreibung |
+| :--- | :--- |
+| `maps` | Geografische Karten: Wo wurde z=1 (Retrofit) gewählt? Kapazitäten. |
+| `dispatch` | Lastgang-Analyse: State of Charge (SoC), Pump-Anreize, Inflow. |
+| `grid` | Systemeffekte: Curtailment, Strompreise (LMPs), RES-Ausbau. |
+| [cost](file:///c:/Users/gjona/projects/Store2Hydro-WP4-IEM/pypsa-eur/scripts/process_cost_data.py#79-251) | Wirtschaftlichkeit: Systemkosten, Capex-Retrofit, Break-even. |
+
+Beispiel für nur Dispatch und Kosten:
+`--modules dispatch cost`
+
+## 4. Hilfreiche Befehle
+*   **Szenarien auflisten**: `python main.py --pypsa-results ... --list-scenarios`
+*   **Verbose Mode**: Nutze `-v` für detaillierte Fehlermeldungen bei Plot-Problemen.
