@@ -1,0 +1,49 @@
+# Config file for Store2Hydro Project
+# Goal: Realistic test of the hydro-to-PHS retrofit feature
+# Scenario-enabled variant of retrofitting_test_1.yaml
+
+run:
+  name: all
+  scenarios:
+    enable: true
+    file: ../config/rf_scenario_test.scenarios.yaml
+
+scenario:
+  clusters:
+  - 3
+  planning_horizons:
+  - 2025
+  - 2030
+  - 2035
+
+snapshots:
+  start: "2013-01-01"
+  end: "2014-01-01"
+  inclusive: left
+
+clustering:
+  temporal:
+    resolution_elec: 3h
+    resolution_sector: false
+
+countries:
+- FR
+
+renewable:
+  hydro:
+    cutout: default
+    carriers:
+    - ror
+    - PHS
+    - hydro
+    PHS_max_hours: 6
+    hydro_max_hours: energy_capacity_totals_by_country
+    flatten_dispatch: false
+    flatten_dispatch_buffer: 0.2
+    clip_min_inflow: 1.0
+    eia_norm_year: false
+    eia_correct_by_capacity: false
+    eia_approximate_missing: false
+    retrofit_to_phs:
+      enable: true
+      capital_cost: 200000

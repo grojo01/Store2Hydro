@@ -5,13 +5,13 @@
 tutorial: false
 
 run:
-  name: "retrofit-test_high CAPEX"
+  name: "max_share-test"
 
 scenario:
   clusters:
-  - 3
+  - 9
 
-countries: 
+countries:
 - FR
 
 snapshots:
