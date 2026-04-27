@@ -2,7 +2,10 @@
 # Goal: Realistic test of the hydro-to-PHS retrofit feature
 # Higher investment cost, more clusters, myopic foresight
 run:
-  name: "c100_FR_10_myopic_ms0.5"
+  name: all
+  scenarios:
+    enable: true
+    file: ../config/rf_scenario_test.scenarios.yaml
 
 scenario:
   clusters:
