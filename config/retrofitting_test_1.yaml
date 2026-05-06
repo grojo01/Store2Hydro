@@ -9,7 +9,7 @@ run:
 
 scenario:
   clusters:
-  - 10  # mehr Cluster → näher an einzelne Kraftwerke
+  - 30  # mehr Cluster → näher an einzelne Kraftwerke
   planning_horizons:
   - 2025
   - 2030
@@ -40,12 +40,12 @@ sector:   # myopic only works for sector networks,
 
 clustering:
   temporal:
-    resolution_elec: 3h
-    resolution_sector: false
+    resolution_elec: false
+    resolution_sector: 3h
 # problem with 24h cannot capture arbitrage potential
 
 countries:
-- FR
+- ES
 
 renewable:
   hydro: # defaults
