@@ -68,5 +68,9 @@ renewable:
       capital_cost: 100  
       max_share: 0.5
 
-# Test run:
-# snakemake -call solve_elec_networks --configfile ../config/retrofitting_test_1.yaml --latency-wait 300 --cores all
+# plotting parameters extension
+plotting:
+  nice_names:
+    retrofitted PHS: "Retrofitted Pumped Hydro Storage"
+  tech_colors:
+    retrofitted PHS: '#7ae8de'
