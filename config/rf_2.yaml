@@ -2,14 +2,14 @@
 # Goal: Realistic test of the hydro-to-PHS retrofit feature
 # Higher investment cost, more clusters, myopic foresight
 run:
-  name: all
+  name: overnight_retrofit_test
   scenarios:
-    enable: true
+    enable: false
     file: ../config/rf_scenario_test.scenarios.yaml
 
 scenario:
   clusters:
-  - 30  # mehr Cluster → näher an einzelne Kraftwerke
+  - 10  # mehr Cluster → näher an einzelne Kraftwerke
   planning_horizons:
   - 2025
   - 2030
@@ -20,7 +20,7 @@ snapshots:
   end: "2014-01-01"
   inclusive: left
 
-foresight: myopic
+foresight: overnight
 
 sector:   # myopic only works for sector networks,
           # workaround: set all sectors to false
@@ -40,8 +40,8 @@ sector:   # myopic only works for sector networks,
 
 clustering:
   temporal:
-    resolution_elec: false
-    resolution_sector: 3h
+    resolution_elec: 3h
+    resolution_sector: false
 # problem with 24h cannot capture arbitrage potential
 
 countries:

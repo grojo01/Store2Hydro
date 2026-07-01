@@ -14,16 +14,21 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pypsa
 
-# ── Config ────────────────────────────────────────────────────────────────────
+### Colors and plotting settings
 COLORS = {"PHS_retrofit": "#1f77b4", "wind": "#2ca02c", "solar": "#ffbb78"}
 PAL    = ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b"]
 DPI    = 300
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-def save(fig, outdir, name):
+### Helper functions
+def save_fig(fig, outdir, name):
     os.makedirs(outdir, exist_ok=True)
     fig.savefig(os.path.join(outdir, name + ".png"), dpi=DPI, bbox_inches="tight")
     plt.close(fig)
+
+def save_csv(df, outdir, name):
+    os.makedirs(outdir, exist_ok=True)
+    df.to_csv(os.path.join(outdir, name + ".csv"), index=False, sep=";", encoding="utf-8")
+
 
 def load_networks(results_root, scenario_names):
     """Returns {scenario: {year: Network}}"""
@@ -80,7 +85,7 @@ def plot_investment_map(data, outdir):
             ax.set_title(yr); ax.set_xlabel("lon"); ax.set_ylabel("lat")
         fig.suptitle(f"Retrofit investment (green=z=1) – {scen}", y=1.01)
         plt.tight_layout()
-        save(fig, outdir, f"map_investment_{scen}")
+        save_fig(fig, outdir, f"map_investment_{scen}")
 
 def plot_capacity_bubbles(data, outdir):
     """Bubble map: p_nom_opt per StorageUnit."""

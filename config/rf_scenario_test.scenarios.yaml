@@ -7,7 +7,7 @@ retrofit-low-cost:
   renewable:
     hydro:
       retrofit_to_phs:
-        capital_cost: 100000
+        capital_cost: 10000
 
 retrofit-mid-cost:
   run:
@@ -15,7 +15,7 @@ retrofit-mid-cost:
   renewable:
     hydro:
       retrofit_to_phs:
-        capital_cost: 200000
+        capital_cost: 100000
 
 retrofit-high-cost:
   run:
@@ -23,4 +23,4 @@ retrofit-high-cost:
   renewable:
     hydro:
       retrofit_to_phs:
-        capital_cost: 400000
+        capital_cost: 200000

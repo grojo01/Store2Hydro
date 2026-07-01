@@ -24,3 +24,10 @@ pixi run snakemake solve_elec_networks \
     --latency-wait 60 &&\
 echo "Snakemake finished, starting analysis..." &&\
 pixi run ../analysis.py --results ../results/plots/
+
+# call all ist vielleicht besser
+pixi run snakemake all \
+    --configfile ../config/retrofitting_test_1.yaml \
+    --cores $SLURM_CPUS_PER_TASK \
+    --latency-wait 60 \
+    --keep-going
